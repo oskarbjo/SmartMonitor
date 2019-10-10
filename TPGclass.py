@@ -74,14 +74,14 @@ class TPGclass:
         fname = to_ + ' Tram Data.txt'
         file = open(fpath+fname,'w')
         file.write(data)
-
+ 
 
 def main():
     TPG = TPGclass()
     while True: 
         TPG.updateTPG('Vieusseux','CERN')
         TPG.updateTPG('Vieusseux','Gare Cornavin')
-        time.sleep(10)
+        time.sleep(11)
     
     
 
