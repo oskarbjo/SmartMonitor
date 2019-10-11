@@ -89,10 +89,13 @@ class TPGclass2:
 
 def main():
     TPG = TPGclass2()
-    while True: 
-        TPG.getDepartures('Vieusseux')
-        TPG.cropDepartureImage()
-        time.sleep(5)
+    while True:
+        try:
+            TPG.getDepartures('Vieusseux')
+            TPG.cropDepartureImage()
+        except:
+            print('Could not retrieve data')
+        time.sleep(3)
     
     
 
