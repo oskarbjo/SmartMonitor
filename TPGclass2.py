@@ -37,12 +37,14 @@ class TPGclass2:
             time.sleep(5)
             await page.screenshot({'path': self.screenShotPath2})
 #             time.sleep(1)
+            print('scroll')
             await page.evaluate('{window.scrollBy(420, 910);}')
             time.sleep(2)
+            print('click search all')
             await page.click(self.searchBtnSelector2)
-            time.sleep(3)
+            print('scroll')
             await page.evaluate('{window.scrollBy(0, 40);}')
-            time.sleep(2)
+            time.sleep(3)
             print('capturing screenshot')
             await page.screenshot({'path': self.screenShotPath})
             await browser.close()
@@ -82,7 +84,7 @@ def main():
     TPG = TPGclass2()
     while True: 
         TPG.getDepartures('Vieusseux')
-        time.sleep(5)
+        time.sleep(10)
     
     
 
