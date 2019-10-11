@@ -72,13 +72,20 @@ def DrawLabels():
 def Refresher1Sec():
     timeLabel.configure(text=time.asctime())
     root.after(1000, Refresher1Sec) 
+
+
+def Refresher3Sec():
+    #Tram
+    try:
+        dep = getTramScreenShot()
+        tramDepartureLabel.image = dep
+        tramDepartureLabel.configure(image=dep)
+    except:
+        print('update 3sec failed')
+    root.after(3000, Refresher3Sec)
     
 def Refresher10Sec():
-    #Tram
-    dep = getTramScreenShot()
-    tramDepartureLabel.image = dep
-    tramDepartureLabel.configure(image=dep)
-    root.after(5000, Refresher10Sec)
+    root.after(10000, Refresher10Sec)
     
 def Refresher1000Sec():
     #Weather
@@ -125,5 +132,6 @@ root.configure(background=bgColor1)
 DrawLabels()
 Refresher1Sec()
 Refresher10Sec()
+Refresher3Sec()
 Refresher1000Sec()
 root.mainloop()

@@ -26,11 +26,14 @@ class TPGclass2:
     async def makeTPGsearch(self):
         try:
             browser = await launch()
+            print('browser launched')
+            time.sleep(1)
             page = await browser.newPage()
+#             time.sleep(1)
             await page.goto('http://www.tpg.ch/')
+            time.sleep(1)
             await page.click(self.depTextBoxSelector)
             print('On webpage')
-            time.sleep(1)
             await page.keyboard.type(self.from_)
             await page.keyboard.press('Enter')
             print('Made search')
@@ -39,13 +42,13 @@ class TPGclass2:
 #             time.sleep(1)
             await page.evaluate('{window.scrollBy(420, 910);}')
             print('scroll1')
-            time.sleep(2)
+            time.sleep(1)
             await page.click(self.searchBtnSelector2)
-            print('click search all')
+            print('clicked search all')
             time.sleep(6)
             await page.evaluate('{window.scrollBy(0, 40);}')
             print('scroll2')
-            time.sleep(1)
+#             time.sleep(1)
             await page.screenshot({'path': self.screenShotPath})
             print('captured screenshot')
             await browser.close()
@@ -85,17 +88,14 @@ class TPGclass2:
         im = Image.open(self.screenShotPath)
         im1 = im.crop((420,285,760,560))
         im1.save(path)
+        print('cropped image')
 
 
 def main():
     TPG = TPGclass2()
     while True:
-        try:
-            TPG.getDepartures('Vieusseux')
-            TPG.cropDepartureImage()
-        except:
-            print('Could not retrieve data')
-        time.sleep(3)
+        TPG.getDepartures('Vieusseux')
+        time.sleep(2)
     
     
 
