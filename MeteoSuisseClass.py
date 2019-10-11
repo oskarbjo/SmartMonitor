@@ -10,7 +10,7 @@ from PIL import Image
 class MeteoSuisse():
     
     def __init__(self):
-        self.geneveSelector='#forecast-map > div.leaflet-map-pane > div.leaflet-objects-pane > div.leaflet-marker-pane > div:nth-child(26) > div.marker__symbol.marker__symbol--4'
+        self.geneveSelector='#forecast-map > div.leaflet-map-pane > div.leaflet-objects-pane > div.leaflet-marker-pane > div:nth-child(26)'
         self.todayWeatherDataSelector='#overview__leaflet-map-popover > section > article.popup-today'
         self.tomorrowWeatherDataSelector='#overview__leaflet-map-popover > section > article:nth-child(6)'
         self.searchResultToday=''

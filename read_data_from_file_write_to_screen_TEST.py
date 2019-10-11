@@ -101,7 +101,7 @@ def Refresher1000Sec():
     icon1=getWeatherIcon('tomorrow')
     weatherIconTomorrow.image = icon1  # <== this is were we anchor the img object
     weatherIconTomorrow.configure(image=icon1)
-    root.after(1000000, Refresher1000Sec)
+    root.after(15000, Refresher1000Sec)
     
 def getCERNTramData():
     file=open(r"C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\CERN Tram Data.txt", "r")

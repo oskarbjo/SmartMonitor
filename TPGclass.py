@@ -26,6 +26,7 @@ class TPGclass:
             browser = await launch()
             page = await browser.newPage()
             await page.goto('https://m.tpg.ch/directions.htm')
+            time.sleep(0.5)
             await page.click(self.depTextBoxSelector)
             await page.keyboard.type(self.from_)
             await page.click(self.destTextBoxSelector)
