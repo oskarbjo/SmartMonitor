@@ -5,7 +5,7 @@ from pyppeteer import launch
 import datetime
 import time
 import re
-
+from PIL import Image
 
 class TPGclass2:
     
@@ -75,16 +75,23 @@ class TPGclass2:
     def getDepartures(self,from_):
         self.from_ = from_
         asyncio.get_event_loop().run_until_complete(self.makeTPGsearch())
+        self.cropDepartureImage()
 #         self.cropImage(self.scre)
     
 #     def cropImage(self):
-        
- 
+    
+    def cropDepartureImage(self):
+        path=r'C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\tramData/departures.png'
+        im = Image.open(self.screenShotPath)
+        im1 = im.crop((420,285,760,560))
+        im1.save(path)
+
 
 def main():
     TPG = TPGclass2()
     while True: 
         TPG.getDepartures('Vieusseux')
+        TPG.cropDepartureImage()
         time.sleep(5)
     
     
