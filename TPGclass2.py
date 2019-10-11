@@ -29,24 +29,25 @@ class TPGclass2:
             page = await browser.newPage()
             await page.goto('http://www.tpg.ch/')
             await page.click(self.depTextBoxSelector)
-            print('here1')
+            print('On webpage')
             time.sleep(1)
             await page.keyboard.type(self.from_)
             await page.keyboard.press('Enter')
-            print('here2')
-            time.sleep(5)
+            print('Made search')
+            time.sleep(1)
             await page.screenshot({'path': self.screenShotPath2})
 #             time.sleep(1)
-            print('scroll')
             await page.evaluate('{window.scrollBy(420, 910);}')
+            print('scroll1')
             time.sleep(2)
-            print('click search all')
             await page.click(self.searchBtnSelector2)
-            print('scroll')
+            print('click search all')
+            time.sleep(6)
             await page.evaluate('{window.scrollBy(0, 40);}')
-            time.sleep(3)
-            print('capturing screenshot')
+            print('scroll2')
+            time.sleep(1)
             await page.screenshot({'path': self.screenShotPath})
+            print('captured screenshot')
             await browser.close()
         except:
             searchResult='Could not download data'
@@ -84,7 +85,7 @@ def main():
     TPG = TPGclass2()
     while True: 
         TPG.getDepartures('Vieusseux')
-        time.sleep(10)
+        time.sleep(5)
     
     
 
