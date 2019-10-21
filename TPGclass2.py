@@ -18,6 +18,8 @@ class TPGclass2:
         self.tickBox4 = '#\31 8_BACHET'
         self.tickBox5 = '#\31 8_CERN'
         self.tickBox6 = '#\31 8_PALETTES'
+        self.clickCoockie = '#CybotCookiebotDialogBodyButtonAccept'
+        self.clickTimeUpdate = '#nextDepartures > div.tempsreel_refreshlink > a'
         self.searchBtnSelector2 = '#lineDestinations_noscript > div.button-right > input'
         self.screenShotPath = r'C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\tramData/screenshot.png'
         self.screenShotPath2 = r'C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\tramData/screenshot2.png'
@@ -31,24 +33,29 @@ class TPGclass2:
             page = await browser.newPage()
 #             time.sleep(1)
             await page.goto('http://www.tpg.ch/')
-            time.sleep(1)
+            time.sleep(2)
+            await page.click(self.clickCoockie)
             await page.click(self.depTextBoxSelector)
             print('On webpage')
             await page.keyboard.type(self.from_)
             await page.keyboard.press('Enter')
             print('Made search')
-            time.sleep(1)
+            time.sleep(2)
             await page.screenshot({'path': self.screenShotPath2})
 #             time.sleep(1)
-            await page.evaluate('{window.scrollBy(420, 910);}')
-            print('scroll1')
-            time.sleep(1)
+#             await page.evaluate('{window.scrollBy(420, 810);}')
+#             print('scroll 1')
+            time.sleep(0.1)
             await page.click(self.searchBtnSelector2)
-            print('clicked search all')
-            time.sleep(6)
-            await page.evaluate('{window.scrollBy(0, 40);}')
-            print('scroll2')
+            print('clicked choose all')
+            time.sleep(5)
+#             await page.evaluate('{window.scrollBy(0, 40);}') #original value 40
+#             print('scroll 2')
 #             time.sleep(1)
+#             await page.click(self.clickHere)
+#             time.sleep(1)
+            await page.evaluate('{window.scrollBy(0, -400);}')
+            await page.click(self.clickTimeUpdate)
             await page.screenshot({'path': self.screenShotPath})
             print('captured screenshot')
             await browser.close()
@@ -86,17 +93,20 @@ class TPGclass2:
     def cropDepartureImage(self):
         path=r'C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\tramData/departures.png'
         im = Image.open(self.screenShotPath)
-        im1 = im.crop((420,285,760,560))
+        im1 = im.crop((420,285,765,570))
         im1.save(path)
         print('cropped image')
 
 
 def main():
-    TPG = TPGclass2()
     while True:
-        TPG.getDepartures('Vieusseux')
-        time.sleep(2)
-    
+        try:
+            TPG = TPGclass2()
+            TPG.getDepartures('Vieusseux')
+            time.sleep(5)
+        except:
+            print('could not retrieve tram data')
+            time.sleep(3)
     
 
 if __name__ == "__main__":

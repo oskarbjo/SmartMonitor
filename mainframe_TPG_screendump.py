@@ -61,12 +61,12 @@ def DrawLabels():
     tomorrowWeatherTextLabel = tk.Label(root, text='',fg = textColor1, bg = bgColor1,
                          font = "SanFrancisco 16 bold")
     tomorrowWeatherTextLabel.pack()
-    tomorrowWeatherTextLabel.place(relx=0.04, rely=yOffset2+0.11, anchor='sw')
+    tomorrowWeatherTextLabel.place(relx=0.04, rely=yOffset2+0.12, anchor='sw')
     tomorrowIcon = getWeatherIcon('today')
     weatherIconTomorrow = tk.Label(root, image=tomorrowIcon, bg = bgColor1)
     weatherIconTomorrow.image=todayIcon
     weatherIconTomorrow.pack()
-    weatherIconTomorrow.place(relx=0.0, rely=yOffset2+0.12, anchor='sw')
+    weatherIconTomorrow.place(relx=0.0, rely=yOffset2+0.13, anchor='sw')
     
 
 def Refresher1Sec():

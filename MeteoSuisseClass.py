@@ -65,11 +65,11 @@ class MeteoSuisse():
     def cropWeatherIcon(self):
         path=r'C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\weatherIcons/todayIcon.png'
         im = Image.open(self.SCpathToday)
-        im1 = im.crop((0,0,40,42)) 
+        im1 = im.crop((0,0,40,46)) 
         im1.save(path)
         path=r'C:\Users\Oskar\Dropbox\Local files_oskars dator\Dropbox dokument\Python Scripts\SmartMonitor_data\weatherIcons/tomorrowIcon.png'
         im = Image.open(self.SCpathTomorrow)
-        im1 = im.crop((0,0,40,42)) 
+        im1 = im.crop((0,0,40,46)) 
         im1.save(path)
     
     def writeWeatherDataToFile(self):
@@ -99,12 +99,14 @@ class MeteoSuisse():
         self.writeWeatherDataToFile()
         
 def main():
-    Meteo = MeteoSuisse()
     while True:
-        Meteo.updateMeteo()
-        print(Meteo.searchResultToday)
-        time.sleep(10)
-    
+        try:
+            Meteo = MeteoSuisse()
+            Meteo.updateMeteo()
+            print(Meteo.searchResultToday)
+            time.sleep(30)
+        except:
+            print('Could not retrieve data')
     
 
 if __name__ == "__main__":
